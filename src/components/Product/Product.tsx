@@ -43,12 +43,14 @@ export const Product = ({ product }: Props) => {
         {isEdit ? (
           <input
             value={titleUpdate}
-            onBlur={() => {
-              resetEditingId()
-              updateProduct.mutate({
-                title: titleUpdate,
-                id: product.id.toString()
-              })
+            onKeyDown={(e) => {
+              if (e.keyCode === 13) {
+                resetEditingId()
+                updateProduct.mutate({
+                  title: titleUpdate,
+                  id: product.id.toString()
+                })
+              }
             }}
             onChange={(
               event: JSXInternal.TargetedEvent<HTMLInputElement, Event>
@@ -57,7 +59,7 @@ export const Product = ({ product }: Props) => {
             }}
             ref={inputRef}
             className={
-              'text-md w-full text-text-0 outline-none px-[8px] py-[6px] hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] border-2 border-primary-100'
+              'text-md w-full text-text-0 outline-none px-[8px] py-[6px] hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] border border-primary-100'
             }
           />
         ) : (
@@ -66,7 +68,7 @@ export const Product = ({ product }: Props) => {
               setEditingId(product.id)
             }}
             className={
-              'text-md w-full text-text-0 px-[8px] py-[6px] border-2 border-transparent hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] focus:border-2 focus:border-primary-30'
+              'text-md w-full text-text-0 px-[8px] py-[6px] border border-transparent hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] focus:border-2 focus:border-primary-30'
             }
           >
             {product.title}
