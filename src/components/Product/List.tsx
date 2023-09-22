@@ -7,12 +7,11 @@ export const List = () => {
 
   return (
     <div className={'h-[calc(100%-100px)] overflow-y-auto overflow-x-hidden '}>
-      {categories?.map((cate: Categories, index: number) => (
+      {categories?.map((cate: Categories) => (
         <ProductGroup
           category={cate.name}
           products={cate.products}
           key={cate.name}
-          index={index}
         />
       ))}
     </div>

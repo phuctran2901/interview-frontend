@@ -24,17 +24,16 @@ const updateProduct = async (
 export default function useUpdateProduct(params?: Partial<IProductParams>) {
   return useMutation(updateProduct, {
     onSuccess: (data) => {
-      queryClient.setQueryData(
+      queryClient.setQueryData<GetProductsApiResponse | undefined>(
         ['products', params],
-        (oldQueryData?: GetProductsApiResponse) => {
-          return {
+        (oldQueryData?: GetProductsApiResponse) =>
+          oldQueryData && {
             ...oldQueryData,
             products: oldQueryData?.products?.map((prod: IProduct) => ({
               ...prod,
               title: prod.id === data.data.id ? data.data.title : prod.title
             }))
           }
-        }
       )
     }
   })

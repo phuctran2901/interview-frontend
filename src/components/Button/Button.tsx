@@ -1,6 +1,6 @@
 import React from 'preact'
 interface Props {
-  children: string | React.JSX
+  children: string | React.Component
   onClick?: () => void
 }
 

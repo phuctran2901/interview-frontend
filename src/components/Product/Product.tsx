@@ -1,10 +1,7 @@
-import { useDebounce } from '../../hooks/useDebounce'
 import useUpdateProduct from '../../mutation/products'
-import queryClient from '../../services/queryClient'
 import useStore from '../../store'
-import { GetProductsApiResponse, IProduct } from '../../types/products'
+import { IProduct } from '../../types/products'
 import { useRef, useEffect, useState } from 'preact/compat'
-import { JSXInternal } from 'preact/src/jsx'
 interface Props {
   product: IProduct
 }
@@ -52,10 +49,8 @@ export const Product = ({ product }: Props) => {
                 })
               }
             }}
-            onChange={(
-              event: JSXInternal.TargetedEvent<HTMLInputElement, Event>
-            ) => {
-              setTitleUpdate(event.target.value)
+            onChange={(event) => {
+              setTitleUpdate((event.target as HTMLInputElement).value)
             }}
             ref={inputRef}
             className={

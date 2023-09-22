@@ -1,6 +1,6 @@
-import { Product } from '../products'
+import { IProduct } from '../products'
 
 export type Categories = {
   name: string
-  products: Product[]
+  products: IProduct[]
 }

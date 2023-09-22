@@ -1,16 +1,13 @@
 import { useEffect } from 'preact/compat'
-import SearchInput from '../SearchInput/SearchInput'
-import Button from '../Button/Button'
 import useFetchProductsCategories from '../../queries/category'
 import { UseQueryResult } from 'react-query'
-import { GetProductsApiResponse, Product } from '../../types/products'
+import { GetProductsApiResponse, IProduct } from '../../types/products'
 import useFetchProducts from '../../queries/products'
 import useStore from '../../store'
 import { Categories } from '../../types/category'
 import List from '../Product/List'
-import { useDebounce } from '../../hooks/useDebounce'
 import { Header } from '../Header/Header'
-export const Card = (): React.JSX<Element> => {
+export const Card = () => {
   const { data: categories }: UseQueryResult<string[], unknown> =
     useFetchProductsCategories()
   const searchStr = useStore((state) => state.searchStr)
@@ -30,7 +27,7 @@ export const Card = (): React.JSX<Element> => {
         name: cate,
         products:
           data?.products?.filter(
-            (product: Product) => product.category === cate
+            (product: IProduct) => product.category === cate
           ) || []
       })) || []
     setCategories(formatData)

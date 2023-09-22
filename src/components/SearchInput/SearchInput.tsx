@@ -1,7 +1,4 @@
-import { JSXInternal } from 'preact/src/jsx'
 import React from 'preact/compat'
-import useStore from '../../store'
-
 interface Props {
   value: string
   setValue: React.StateUpdater<string>
@@ -41,16 +38,14 @@ export const SearchInput = ({
           }   text-sm text-text-0 border  rounded-[50px] py-[12px] px-[16px] gap-[8px] pl-[40px] outline-none`}
           placeholder='Search'
           required
-          onKeyDown={(
-            e: JSXInternal.TargetedEvent<HTMLInputElement, Event>
-          ) => {
+          onKeyDown={(e) => {
             if (e.keyCode === 13) {
               // enter
               setSearchStr(value)
             }
           }}
-          onChange={(e: JSXInternal.TargetedEvent<HTMLInputElement, Event>) => {
-            setValue(e.target.value)
+          onChange={(event) => {
+            setValue((event.target as HTMLInputElement).value)
           }}
         />
         {value && (
