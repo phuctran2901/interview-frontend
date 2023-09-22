@@ -63,16 +63,18 @@ export const Product = ({ product }: Props) => {
             }
           />
         ) : (
-          <h4
+          <div
             onClick={() => {
               setEditingId(product.id)
             }}
             className={
-              'text-md w-full text-text-0 px-[8px] py-[6px] border border-transparent hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] focus:border-2 focus:border-primary-30'
+              'w-[302px] px-[8px] py-[6px] border border-transparent hover:bg-neutral-7 active:bg-neutral-6 rounded-[8px] focus:border-2 focus:border-primary-30'
             }
           >
-            {product.title}
-          </h4>
+            <h4 className={'text-md  text-text-0 max-w-full line-clamp-1'}>
+              {product.title}
+            </h4>
+          </div>
         )}
         <p className={'px-[8px] text-xs text-text-1'}>$ {product.price}</p>
       </div>

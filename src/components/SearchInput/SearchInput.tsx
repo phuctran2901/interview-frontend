@@ -35,8 +35,10 @@ export const SearchInput = ({
         <input
           value={value}
           className={`focus:bg-neutral-8 focus:border-primary-100 w-full hover:bg-neutral-8 hover:border-primary-30 ${
-            searchStr ? 'border-neutral-1' : 'border-neutral-4'
-          } bg-neutral-7  text-sm text-text-0 border  rounded-[50px] py-[12px] px-[16px] gap-[8px] pl-[40px] outline-none`}
+            searchStr
+              ? 'border-neutral-1 bg-neutral-8'
+              : 'border-neutral-4 bg-neutral-7'
+          }   text-sm text-text-0 border  rounded-[50px] py-[12px] px-[16px] gap-[8px] pl-[40px] outline-none`}
           placeholder='Search'
           required
           onKeyDown={(
