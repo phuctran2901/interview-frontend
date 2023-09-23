@@ -7,7 +7,8 @@ interface Props {
 }
 export const Product = ({ product }: Props) => {
   const searchStr = useStore((state) => state.searchStr)
-  const [titleUpdate, setTitleUpdate] = useState<string>(product.title)
+  const [title, setTitle] = useState<string>(product.title)
+
   const updateProduct = useUpdateProduct({
     select: 'title,price,thumbnail,category',
     q: searchStr,
@@ -39,18 +40,18 @@ export const Product = ({ product }: Props) => {
       <div className={'flex-1'}>
         {isEdit ? (
           <input
-            value={titleUpdate}
+            value={title}
             onKeyDown={(e) => {
               if (e.keyCode === 13) {
                 resetEditingId()
                 updateProduct.mutate({
-                  title: titleUpdate,
+                  title,
                   id: product.id.toString()
                 })
               }
             }}
             onChange={(event) => {
-              setTitleUpdate((event.target as HTMLInputElement).value)
+              setTitle((event.target as HTMLInputElement).value)
             }}
             ref={inputRef}
             className={
@@ -67,7 +68,7 @@ export const Product = ({ product }: Props) => {
             }
           >
             <h4 className={'text-md  text-text-0 max-w-full line-clamp-1'}>
-              {product.title}
+              {title}
             </h4>
           </div>
         )}
